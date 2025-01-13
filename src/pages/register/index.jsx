@@ -5,7 +5,7 @@ import {useRouter} from 'next/router';
 import {useState} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
 
-export default function LoginPage () {
+export default function RegistrationPage () {
   const [email, setEmail] = useState ('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');

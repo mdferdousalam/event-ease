@@ -1,4 +1,4 @@
-import logo from '@/assets/logo/tuisa.svg';
+
 import {
   DashboardOutlined,
   UploadOutlined,
@@ -6,7 +6,7 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import {Layout, Menu} from 'antd';
-import Image from 'next/legacy/image';
+
 import Link from 'next/link';
 import {useRouter} from 'next/router';
 import {useEffect, useState} from 'react';
@@ -103,13 +103,7 @@ const SidebarComponent = ({panel}) => {
     
       <div className='flex items-center justify-center h-20'> 
       <Link href={'/dashboard'} className=" mx-auto px-2 ">
-  <Image
-    src={logo}
-    width={200}
-    alt="logo"
-    className=" mx-auto "
-    priority="low"
-  />
+  <p>EventEasy</p>
 </Link>
 
       </div>

@@ -1,5 +1,6 @@
 import {ConfigProvider, Layout} from 'antd';
-import SidebarComponent from '../UIComponents/SharedComponents/SidebarComponent';
+import SidebarComponent
+  from '../UIComponents/SharedComponents/SidebarComponent';
 import WithAuth from '../UIComponents/SharedComponents/WithAuth';
 
 const {Content} = Layout;
@@ -21,4 +22,4 @@ const AdminDashboardLayout = ({children}) => {
   );
 };
 
-export default WithAuth (AdminDashboardLayout, ['admin']);
+export default WithAuth (AdminDashboardLayout, ['normalUser']);

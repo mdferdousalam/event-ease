@@ -1,10 +1,11 @@
 import {ConfigProvider, Layout} from 'antd';
-import SidebarComponent from '../UIComponents/SharedComponents/SidebarComponent';
+import SidebarComponent
+  from '../UIComponents/SharedComponents/SidebarComponent';
 import WithAuth from '../UIComponents/SharedComponents/WithAuth';
 
 const {Content} = Layout;
 
-const AdminDashboardLayout = ({children}) => {
+const ModeratorDashboardLayout = ({children}) => {
   return (
     <ConfigProvider>
       <Layout className={`bg-white`}>
@@ -21,4 +22,4 @@ const AdminDashboardLayout = ({children}) => {
   );
 };
 
-export default WithAuth (AdminDashboardLayout, ['admin']);
+export default WithAuth (ModeratorDashboardLayout, ['moderator']);

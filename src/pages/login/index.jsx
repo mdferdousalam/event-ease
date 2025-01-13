@@ -5,6 +5,10 @@ import {useRouter} from 'next/router';
 import {useState} from 'react';
 import toast, {Toaster} from 'react-hot-toast';
 
+const ROLE_ADMIN = 'admin';
+const ROLE_NORMAL_USER = 'normalUser';
+const ROLE_MODERATOR = 'moderator';
+
 export default function LoginPage () {
   const [email, setEmail] = useState ('');
   const [password, setPassword] = useState ('');
@@ -36,8 +40,19 @@ console.log(Data)
         localStorage.setItem ('user_id', userId);
         localStorage.setItem ('user_role', role);
         localStorage.setItem ('id_token', token);
-        toast.success ('Login successful');
-        router.push ('/dashboard');
+        toast.success('Login successful');
+        
+        if (role === ROLE_ADMIN) {
+          router.push ('/admin/dashboard');
+        } else if (role === ROLE_MODERATOR) {
+          router.push ('/moderator/dashboard');
+        }
+        else if (role === ROLE_NORMAL_USER) {
+          router.push('/user/dashboard');
+        } else {
+
+          router.push('/dashboard');
+        }
       } else {
         toast.error (Data.message || 'Login failed');
       }
