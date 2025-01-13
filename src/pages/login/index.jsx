@@ -1,8 +1,9 @@
 import {server} from '@/config/server';
-import {useState} from 'react';
+import {jwtDecode} from 'jwt-decode';
+import Link from 'next/link';
 import {useRouter} from 'next/router';
-
-
+import {useState} from 'react';
+import toast, {Toaster} from 'react-hot-toast';
 
 export default function LoginPage () {
   const [email, setEmail] = useState ('');
@@ -10,7 +11,7 @@ export default function LoginPage () {
   const router = useRouter ();
   const handleSubmit = async e => {
     e.preventDefault ();
-    console.log ('Login with', {email, password});
+
     try {
       const response = await fetch (server + '/auth/login', {
         method: 'POST',
@@ -19,25 +20,30 @@ export default function LoginPage () {
         },
         body: JSON.stringify ({email, password}),
       });
+        const Data = await response.json ();
 
-      if (response.statusCode=200) {
-          const Data = await response.json();
-          const token = Data.data.accessToken
-          
-          //decode token using jwt-decode
-          
+console.log(Data)
+      if ((Data.statusCode == 200)) {
+        const token = Data.data.accessToken;
+       
+        //decode token using jwt-decode
+        const decoded = jwtDecode(token);
+        console.log (decoded);
+        const role = decoded.role;
+        const userId = decoded.userId
 
-
-
-        const userRole = Data.token.user.role;
-        localStorage.setItem ('user_role', userRole);
+        //store token and role in local storage
+        localStorage.setItem ('user_id', userId);
+        localStorage.setItem ('user_role', role);
         localStorage.setItem ('id_token', token);
+        toast.success ('Login successful');
         router.push ('/dashboard');
       } else {
-        const errorData = await response.json ();
+        toast.error (Data.message || 'Login failed');
       }
     } catch (error) {
       console.error ('An error occurred:', error);
+      toast.error (error.message);
     }
   };
 
@@ -45,9 +51,10 @@ export default function LoginPage () {
     <div
       className={`flex items-center justify-center min-h-screen bg-gray-100 p-4`}
     >
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-md">
         <div className="flex flex-col items-center mb-6">
-          <h1 className="text-2xl font-bold mt-4">Login</h1>
+          <h1 className="text-2xl font-bold mt-4 text-blue-600">Login</h1>
         </div>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -89,6 +96,13 @@ export default function LoginPage () {
           >
             Log In
           </button>
+          <p className="text-center">
+  Don&apos;t have an account?{' '}
+  <Link className="text-blue-600" href="/register">
+    Create an account
+  </Link>
+</p>;
+
         </form>
       </div>
     </div>

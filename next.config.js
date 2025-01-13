@@ -4,7 +4,12 @@ const nextConfig = {
   // webpack5: true,
   images: {
     unoptimized: true,
-    domains: ["images.unsplash.com", "dummyimage.com", "img.freepik.com"],
+    domains: [
+      "images.unsplash.com",
+      "dummyimage.com",
+      "img.freepik.com",
+      "getpublii.com",
+    ],
   },
   webpack(config) {
     config.resolve.fallback = {
