@@ -1,3 +1,6 @@
+import RootLayout from "@/components/LayoutComponents/RootLayout.jsx";
+
+
 const HomePage = () => {
   return (
     <div>
@@ -8,4 +11,12 @@ const HomePage = () => {
   );
 };
 
+ 
+HomePage.getLayout = function getLayout(page) {
+  return (
+    <RootLayout>
+      {page}
+    </RootLayout>
+  );
+};
 export default HomePage;

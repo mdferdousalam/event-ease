@@ -18,24 +18,61 @@ const adminOptions = [
     key: '0',
     icon: <DashboardOutlined />,
     label: 'Home',
-    url: '/dashboard',
+    url: '/admin/dashboard',
   },
   {
     key: '1',
     icon: <UserOutlined />,
-    label: 'Spender',
-    url: '/dashboard/donors',
-  },
-  {
-    key: '2',
-    icon: <VideoCameraOutlined />,
-    label: 'Spenden',
-    url: '/dashboard/donations',
+    label: 'Create Event',
+    url: '/admin/dashboard/create',
   },
   {
     key: '3',
     icon: <UploadOutlined />,
-    label: 'Abmelden',
+    label: 'signOut',
+    url: '',
+  },
+];
+
+const moderatorOptions = [
+  {
+    key: '0',
+    icon: <DashboardOutlined />,
+    label: 'Home',
+    url: '/moderator/dashboard',
+  },
+  {
+    key: '1',
+    icon: <UserOutlined />,
+    label: 'Create Event',
+    url: '/moderator/dashboard/create',
+  },
+  {
+    key: '3',
+    icon: <UploadOutlined />,
+    label: 'signOut',
+    url: '',
+  },
+
+];
+
+const userOptions = [
+  {
+    key: '0',
+    icon: <DashboardOutlined />,
+    label: 'Home',
+    url: '/user/dashboard',
+  },
+  {
+    key: '1',
+    icon: <UserOutlined />,
+    label: 'Create Event',
+    url: '/user/dashboard/create',
+  },
+  {
+    key: '3',
+    icon: <UploadOutlined />,
+    label: 'signOut',
     url: '',
   },
 ];
@@ -81,6 +118,8 @@ const SidebarComponent = ({panel}) => {
 
   const getPanelOptions = panel => {
     if (panel === 'admin') return adminOptions;
+    if (panel === 'moderator') return moderatorOptions;
+    if (panel === 'user') return userOptions;
     return [];
   };
 

@@ -9,7 +9,7 @@ const ModeratorDashboardLayout = ({children}) => {
   return (
     <ConfigProvider>
       <Layout className={`bg-white`}>
-        <SidebarComponent panel="admin" />
+        <SidebarComponent panel="moderator" />
         <Layout className="bg-white">
           <Content className={`mt-6 mx-4  rounded-2xl`}>
             <div>

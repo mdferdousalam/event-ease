@@ -2,22 +2,29 @@
 
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 
 const Navbar = () => {
-  const router = useRouter ();
+    const router = useRouter();
+    const [session, setSession] = useState(null);
     const signOut = async () => {
         localStorage.removeItem('user_id');
         localStorage.removeItem('user_role');
         localStorage.removeItem('id_token');
         router.push('/login');
     }
-    const session = {
-        user: localStorage.getItem('id_token')
-    }
+
     
+    useEffect(() => {
+        const sessionExist = {
+            user: `${localStorage.getItem('user_id')}`,
+        }
+       setSession(sessionExist);
+    }, [])
+
   return (
-    <div className="navbar bg-base-100  border-b  w-[90%] mx-auto">
+    <div className="navbar bg-base-100  mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -74,7 +81,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        {session?.user ? (
+        {session ? (
           <button
             onClick={() => signOut()}
             className="btn btn-error btn-outline text-white rounded-full px-5"
