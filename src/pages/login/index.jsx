@@ -46,12 +46,10 @@ console.log(Data)
           router.push ('/admin/dashboard');
         } else if (role === ROLE_MODERATOR) {
           router.push ('/moderator/dashboard');
-        }
-        else if (role === ROLE_NORMAL_USER) {
+        } else if (role === ROLE_NORMAL_USER) {
           router.push('/user/dashboard');
         } else {
-
-          router.push('/dashboard');
+          router.push('/');
         }
       } else {
         toast.error (Data.message || 'Login failed');
@@ -112,12 +110,11 @@ console.log(Data)
             Log In
           </button>
           <p className="text-center">
-  Don&apos;t have an account?{' '}
-  <Link className="text-blue-600" href="/register">
-    Create an account
-  </Link>
-</p>;
-
+              Don&apos;t have an account?
+              <Link className="text-blue-600" href="/register">
+                Create an account
+              </Link>
+          </p>
         </form>
       </div>
     </div>

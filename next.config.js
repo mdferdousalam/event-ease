@@ -9,6 +9,7 @@ const nextConfig = {
       "dummyimage.com",
       "img.freepik.com",
       "getpublii.com",
+      "i.stack.imgur.com",
     ],
   },
   webpack(config) {
